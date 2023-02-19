@@ -1,4 +1,4 @@
-# NBA Stats
+# NBA Stats 🏀
 
 This is a calculator based on data retrieved from the "balldontlie" API.
 It calculates the averages of a player before and after a major injury.
