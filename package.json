@@ -1,0 +1,14 @@
+{
+  "name": "nba-stats",
+  "version": "1.0.0",
+  "description": "calc stats for nba players",
+  "scripts": {
+    "test": "node calc/cousins.js"
+  },
+  "author": "TheChoco1",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "json": "^11.0.0"
+  }
+}
