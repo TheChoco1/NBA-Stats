@@ -73,3 +73,4 @@ let af_data_string = JSON.stringify(af_data);
 fs.writeFile("return data/after data/durant.json", af_data_string, function(err, result) {
     if(err) console.log('error', err);
 });
+
