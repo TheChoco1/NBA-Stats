@@ -11,5 +11,5 @@ For example, Demarcus Cousins had his first major injury during the
 
 ## Future plans:
 * *Website soon...™*
-* Add more players with accurte info
+* Add more players with accurate info
 * Pull directly from an API or find a way to upload stats and injuries accurately and with exact dates
