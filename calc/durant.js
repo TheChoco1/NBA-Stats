@@ -13,7 +13,7 @@ function indexOfPlayer(id) {
     for (let i = 0; i < data2015.data.length; i++) {
         if (data2015.data[i].player_id == id) return i;
     }
-    return "fail"
+    return -1;
 }
 
 let e = indexOfPlayer(140);
