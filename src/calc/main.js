@@ -8,24 +8,37 @@ import data2021 from '../data/2021_2-14.json' assert {type: 'json'}
 let year = [data2015, data2016, data2017, data2018, data2020, data2021];
 
 let playerIDs = [107, 140, 165, 172, 204, 268, 274, 285, 357, 362, 417, 443];
-let yearlyPts = [[], [], [], [], [], []];
-let e;
-let f = 0;
+let tempIDs = [];
+let yearlyGp = [[], [], [], [], [], []];
+let yearlyPpg = [[], [], [], [], [], []];
+let yearlyAst = [[], [], [], [], [], []];
+let yearlyReb = [[], [], [], [], [], []];
+let yearlyBlk = [[], [], [], [], [], []];
+let yearlyStl = [[], [], [], [], [], []];
+let yearlyFg_pct = [[], [], [], [], [], []];
+let yearlyFg3_pct = [[], [], [], [], [], []];
+let yearlyTurnover = [[], [], [], [], [], []];
 
 for (let i = 0; i < year.length; i++) {
-    e = year[i].data.length;
-    for (let j = 0; j < e; j++) {
-        if (year[i].data[j].player_id == playerIDs[f]) {
-            yearlyPts[i][j] = year[i].data[j].pts;
-            f++;
+    for (let j = 0; j < year[i].data.length; j++) {
+        for (let k = 0; k < playerIDs.length; k++) {
+            if (year[i].data[j].player_id == playerIDs[k]) {
+                tempIDs.push(playerIDs[k]);
+            }
+        }
+        if (year[i].data[j].player_id == tempIDs[j]) {
+            yearlyGp[i][j] = year[i].data[j].games_played;
+            yearlyPpg[i][j] = year[i].data[j].pts;
+            yearlyAst[i][j] = year[i].data[j].ast;
+            yearlyReb[i][j] = year[i].data[j].reb;
+            yearlyBlk[i][j] = year[i].data[j].blk;
+            yearlyStl[i][j] = year[i].data[j].stl;
+            yearlyFg_pct[i][j] = year[i].data[j].fg_pct;
+            yearlyFg3_pct[i][j] = year[i].data[j].fg3_pct;
+            yearlyTurnover[i][j] = year[i].data[j].turnover;
         } else {
-            yearlyPts[i][j] = 0;
-            f++;
+            yearlyPpg[i][j] = 0;
         }
     }
-    f=0;
+    tempIDs = [];
 }
-
-console.log(yearlyPts);
-
-// figure out why some years are missing data and why some aren't
