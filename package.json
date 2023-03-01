@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "calc stats for nba players",
   "scripts": {
-    "test": "node src/calc/main.js"
+    "test": "node src/calc/retrieveStats.js"
   },
   "author": "TheChoco1",
   "license": "ISC",

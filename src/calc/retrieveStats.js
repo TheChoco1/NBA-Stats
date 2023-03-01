@@ -8,7 +8,6 @@ import data2021 from '../data/2021_2-14.json' assert {type: 'json'}
 let year = [data2015, data2016, data2017, data2018, data2020, data2021];
 
 let playerIDs = [107, 140, 165, 172, 204, 268, 274, 285, 357, 362, 417, 443];
-let tempIDs = [];
 let yearlyGp = [[], [], [], [], [], []];
 let yearlyPpg = [[], [], [], [], [], []];
 let yearlyAst = [[], [], [], [], [], []];
@@ -19,26 +18,40 @@ let yearlyFg_pct = [[], [], [], [], [], []];
 let yearlyFg3_pct = [[], [], [], [], [], []];
 let yearlyTurnover = [[], [], [], [], [], []];
 
-for (let i = 0; i < year.length; i++) {
-    for (let j = 0; j < year[i].data.length; j++) {
-        for (let k = 0; k < playerIDs.length; k++) {
-            if (year[i].data[j].player_id == playerIDs[k]) {
-                tempIDs.push(playerIDs[k]);
+
+const retrieveStats = () => {
+    for (let i = 0; i < year.length; i++) {
+        for (let j = 0; j < playerIDs.length; j++) {
+            for (let k = 0; k < year[i].data.length; k++) {
+                if (year[i].data[k].player_id == playerIDs[j]) {
+                yearlyGp[i][j] = year[i].data[k].games_played;
+                yearlyPpg[i][j] = year[i].data[k].pts;
+                yearlyAst[i][j] = year[i].data[k].ast;
+                yearlyReb[i][j] = year[i].data[k].reb;
+                yearlyBlk[i][j] = year[i].data[k].blk;
+                yearlyStl[i][j] = year[i].data[k].stl;
+                yearlyFg_pct[i][j] = year[i].data[k].fg_pct;
+                yearlyFg3_pct[i][j] = year[i].data[k].fg3_pct;
+                yearlyTurnover[i][j] = year[i].data[k].turnover;
+                }
+            }
+            if (yearlyPpg[i][j] == undefined) {
+                yearlyGp[i][j] = 0;
+                yearlyPpg[i][j] = 0;
+                yearlyAst[i][j] = 0;
+                yearlyReb[i][j] = 0;
+                yearlyBlk[i][j] = 0;
+                yearlyStl[i][j] = 0;
+                yearlyFg_pct[i][j] = 0;
+                yearlyFg3_pct[i][j] = 0;
+                yearlyTurnover[i][j] = 0;
             }
         }
-        if (year[i].data[j].player_id == tempIDs[j]) {
-            yearlyGp[i][j] = year[i].data[j].games_played;
-            yearlyPpg[i][j] = year[i].data[j].pts;
-            yearlyAst[i][j] = year[i].data[j].ast;
-            yearlyReb[i][j] = year[i].data[j].reb;
-            yearlyBlk[i][j] = year[i].data[j].blk;
-            yearlyStl[i][j] = year[i].data[j].stl;
-            yearlyFg_pct[i][j] = year[i].data[j].fg_pct;
-            yearlyFg3_pct[i][j] = year[i].data[j].fg3_pct;
-            yearlyTurnover[i][j] = year[i].data[j].turnover;
-        } else {
-            yearlyPpg[i][j] = 0;
-        }
+
     }
-    tempIDs = [];
 }
+
+retrieveStats();
+console.log(yearlyPpg);
+
+export default { retrieveStats };
