@@ -5,9 +5,11 @@ import data2018 from '../data/2018_2-14.json' assert {type: 'json'}
 import data2020 from '../data/2020_2-14.json' assert {type: 'json'}
 import data2021 from '../data/2021_2-14.json' assert {type: 'json'}
 
-let year = [data2015, data2016, data2017, data2018, data2020, data2021];
+import fs from 'fs';
 
-let playerIDs = [107, 140, 165, 172, 204, 268, 274, 285, 357, 362, 417, 443];
+let year = [data2015, data2016, data2017, data2018, data2020, data2021];
+let playerIDs = [27, 104, 107, 115, 140, 145, 165, 172, 176, 189, 196, 204, 228, 268, 274, 285, 315, 357, 362, 367, 378, 401, 417, 443, 447];
+
 let yearlyGp = [[], [], [], [], [], []];
 let yearlyPpg = [[], [], [], [], [], []];
 let yearlyAst = [[], [], [], [], [], []];
@@ -17,7 +19,6 @@ let yearlyStl = [[], [], [], [], [], []];
 let yearlyFg_pct = [[], [], [], [], [], []];
 let yearlyFg3_pct = [[], [], [], [], [], []];
 let yearlyTurnover = [[], [], [], [], [], []];
-
 
 const retrieveStats = () => {
     for (let i = 0; i < year.length; i++) {
@@ -52,6 +53,21 @@ const retrieveStats = () => {
 }
 
 retrieveStats();
-console.log(yearlyPpg);
 
-export default { retrieveStats };
+let newData = {
+    "yearlyGp": yearlyGp,
+    "yearlyPpg": yearlyPpg,
+    "yearlyAst": yearlyAst,
+    "yearlyReb": yearlyReb,
+    "yearlyBlk": yearlyBlk,
+    "yearlyStl": yearlyStl,
+    "yearlyFg_pct": yearlyFg_pct,
+    "yearlyFg3_pct": yearlyFg3_pct,
+    "yearlyTurnover": yearlyTurnover,
+}
+
+let wee = JSON.stringify(newData);
+
+fs.writeFile("./src/return data/newData.json", wee, function(err, result) {
+    if(err) console.log('error', err);
+});
